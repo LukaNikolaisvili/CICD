@@ -16,6 +16,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: convert input to int
+      id: convert_input
+      run: echo "::set-output name = num::${{ github.event.inputs.number}}"
+    
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:
@@ -25,5 +29,5 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        - name: Run the script with a hardcoded value
-          run: python EvenorOdd.py 10
+        - name: Run the script 
+          run: python EvenorOdd.py ${{ steps.convert_input.outputs.number }}
