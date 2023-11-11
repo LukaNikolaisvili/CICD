@@ -15,19 +15,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
     - name: convert input to int
       id: convert_input
-      run: echo "::set-output name = num::${{ github.event.inputs.number}}"
+      run: echo "::set-output name = num::${{ github.event.inputs.number }}"
     
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v3
+    - name: checkout code
+      uses: actions/checkout@v3
       with:
         python-version: "3.10"
+        
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install flake8 pytest
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        - name: Run the script 
-          run: python EvenorOdd.py ${{ steps.convert_input.outputs.number }}
+        
+    - name: Run the script 
+      run: python EvenorOdd.py ${{ steps.convert_input.outputs.number }}
