@@ -11,13 +11,12 @@ permissions:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - name: convert input to int
       id: convert_input
-      run: echo "::set-output name = num::${{ github.event.inputs.number }}"
+      run: echo "::set-output name=number::${{ github.event.inputs.number }}"
     
     - name: checkout code
       uses: actions/checkout@v3
