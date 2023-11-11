@@ -25,10 +25,5 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Take user input and run script
-      run: |
-        echo "Please enter an integer:"
-        read user_input
-        python EvenorOdd.py $user_input
-    - name: Test with pytest
-      run: python EvenorOdd.py
+        - name: Run the script with a hardcoded value
+          run: python EvenorOdd.py 10
